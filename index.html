@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Resume and portfolio of Piyush Deshmukh." />
+  <title>Piyush Deshmukh | Resume</title>
+  <style>
+    :root {
+      --ink: #263b3b;
+      --muted: #637776;
+      --primary: #3f7770;
+      --primary-dark: #2d5e59;
+      --mint: #eaf6f1;
+      --sky: #eef7fb;
+      --cream: #fffdf8;
+      --line: #dce9e4;
+      --white: #ffffff;
+      --shadow: 0 12px 32px rgba(44, 83, 76, .09);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: linear-gradient(135deg, #f2faf6 0%, #f5f9ff 55%, #fffdf7 100%);
+      font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
+      line-height: 1.65;
+    }
+    a { color: inherit; }
+    .page { width: min(900px, calc(100% - 32px)); margin: 0 auto; padding: 42px 0 28px; }
+    .hero {
+      text-align: center;
+      padding: 34px 24px 30px;
+      border: 1px solid rgba(220, 233, 228, .9);
+      border-radius: 28px;
+      background: rgba(255,255,255,.82);
+      box-shadow: var(--shadow);
+    }
+    .profile-photo {
+      width: 164px;
+      height: 164px;
+      object-fit: cover;
+      object-position: center 28%;
+      border-radius: 50%;
+      border: 6px solid #fff;
+      box-shadow: 0 0 0 2px #cfe5dc, 0 10px 24px rgba(44,83,76,.13);
+      display: block;
+      margin: 0 auto 20px;
+    }
+    .eyebrow {
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: .18em;
+      font-size: .76rem;
+      font-weight: 800;
+      margin: 0 0 5px;
+    }
+    h1 { font-size: clamp(2rem, 5vw, 3.2rem); line-height: 1.15; margin: 0; letter-spacing: -.04em; }
+    .role { color: var(--primary); font-size: 1.08rem; font-weight: 700; margin: 10px 0 15px; }
+    .summary { max-width: 680px; margin: 0 auto; color: var(--muted); }
+    .contact-row { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px 18px; margin-top: 22px; font-size: .92rem; color: var(--muted); }
+    .contact-row a { text-decoration: none; }
+    .contact-row a:hover { color: var(--primary-dark); text-decoration: underline; }
+    .section-heading { margin: 32px 0 14px; display: flex; align-items: center; gap: 12px; }
+    .section-heading h2 { margin: 0; font-size: 1.35rem; letter-spacing: -.02em; }
+    .section-heading span { height: 1px; background: var(--line); flex: 1; }
+    .tabs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 26px 0 16px; }
+    .tab-button {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 13px 10px;
+      background: rgba(255,255,255,.85);
+      color: var(--primary-dark);
+      font: inherit;
+      font-weight: 750;
+      cursor: pointer;
+      transition: transform .2s ease, background .2s ease, box-shadow .2s ease;
+    }
+    .tab-button:hover { transform: translateY(-2px); box-shadow: 0 7px 18px rgba(44,83,76,.08); }
+    .tab-button[aria-selected="true"] { background: var(--primary); color: #fff; border-color: var(--primary); }
+    .tab-content { display: none; animation: appear .25s ease; }
+    .tab-content.active { display: block; }
+    @keyframes appear { from { opacity: .25; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+    .panel {
+      background: rgba(255,255,255,.9);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: 0 8px 22px rgba(44,83,76,.045);
+      margin-bottom: 14px;
+    }
+    .panel h3 { margin: 0 0 3px; font-size: 1.08rem; }
+    .meta { color: var(--primary); font-size: .9rem; font-weight: 700; margin: 0 0 12px; }
+    .panel p { margin: 8px 0; color: var(--muted); }
+    ul { margin: 8px 0 0; padding-left: 20px; color: var(--muted); }
+    li { margin: 5px 0; }
+    .tag-list { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 12px; }
+    .tag { background: var(--mint); border: 1px solid #d9ece4; border-radius: 999px; padding: 7px 12px; color: #315e57; font-size: .9rem; }
+    .hobby-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(145px, 1fr)); gap: 12px; }
+    .hobby { background: var(--sky); border: 1px solid #dcecf2; border-radius: 15px; padding: 16px; font-weight: 700; color: #426c79; }
+    .footer { text-align: center; color: var(--muted); font-size: .86rem; padding: 22px 8px 0; }
+    .print-button {
+      display: inline-flex; margin-top: 20px; border: 0; border-radius: 999px;
+      background: var(--primary-dark); color: white; padding: 11px 18px;
+      font: inherit; font-weight: 700; cursor: pointer;
+    }
+    .print-button:hover { background: #234d48; }
+    @media (max-width: 600px) {
+      .page { width: min(100% - 20px, 900px); padding-top: 14px; }
+      .hero { padding: 26px 16px; border-radius: 22px; }
+      .profile-photo { width: 138px; height: 138px; }
+      .tabs { grid-template-columns: repeat(2, 1fr); }
+      .panel { padding: 19px; }
+      .contact-row { gap: 8px 12px; }
+    }
+    @media print {
+      body { background: #fff; }
+      .page { width: 100%; padding: 0; }
+      .hero, .panel { box-shadow: none; background: #fff; }
+      .tabs, .print-button { display: none; }
+      .tab-content { display: block !important; }
+      .section-heading { margin-top: 22px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="hero">
+      <img class="profile-photo" src="assets/piyush.jpg" alt="Portrait of Piyush Deshmukh" />
+      <p class="eyebrow">Resume &amp; Personal Portfolio</p>
+      <h1>Piyush Deshmukh</h1
+      <p class="summary">
+        Dedicated and customer-focused professional with experience in customer support, client relationship
+        management, quality reporting, and sales coordination. Strong communication and problem-solving skills,
+        with a focus on customer satisfaction, operational efficiency, and continuous learning.
+      </p>
+      <div class="contact-row">
+        <a href="mailto:piyushdeshmukh1111@gmail.com">✉ piyushdeshmukh1111@gmail.com</a>
+        <a href="tel:+919340558721">☎ +91 9340558721</a>
+        <span>⌖ Indore, Madhya Pradesh</span>
+      </div>
+      <button class="print-button" type="button" onclick="window.print()">Print / Save as PDF</button>
+    </header>
+
+    <div class="section-heading"><h2>Explore my profile</h2><span></span></div>
+    <nav class="tabs" role="tablist" aria-label="Resume sections">
+      <button class="tab-button" id="tab-education" role="tab" aria-controls="education" aria-selected="true" type="button">Education</button>
+      <button class="tab-button" id="tab-experience" role="tab" aria-controls="experience" aria-selected="false" type="button">Experience</button>
+      <button class="tab-button" id="tab-hobbies" role="tab" aria-controls="hobbies" aria-selected="false" type="button">Hobbies</button>
+      <button class="tab-button" id="tab-skills" role="tab" aria-controls="skills" aria-selected="false" type="button">Skills</button>
+    </nav>
+
+    <section class="tab-content active" id="education" role="tabpanel" aria-labelledby="tab-education">
+      <article class="panel">
+        <h3>Master of Computer Applications (MCA)</h3>
+        <p class="meta">July 2023 – July 2026</p>
+        <p>Relevant subjects: Database Management Systems, Software Engineering, Web Technologies, Data Structures, Computer Networks, Operating Systems, Java Programming, and Python Programming.</p>
+      </article>
+      <article class="panel">
+        <h3>Bachelor of Computer Applications (BCA)</h3>
+        <p class="meta">SVVV, Indore · Completed 2021</p>
+        <p>CGPA: 6.58</p>
+      </article>
+      <article class="panel">
+        <h3>Higher Secondary (12th)</h3>
+        <p class="meta">Madhya Pradesh Board · 2017</p>
+        <p>Percentage: 74.8%</p>
+      </article>
+      <article class="panel">
+        <h3>High School (10th)</h3>
+        <p class="meta">Madhya Pradesh Board · 2015</p>
+        <p>Percentage: 68%</p>
+      </article>
+    </section>
+
+    <section class="tab-content" id="experience" role="tabpanel" aria-labelledby="tab-experience">
+      <article class="panel">
+        <h3>Customer Support Executive — Teleperformance</h3>
+        <p class="meta">Indore · May 2025 – June 2026</p>
+        <ul>
+          <li>Provided customer support through voice and non-voice channels.</li>
+          <li>Resolved queries, complaints, and service requests within defined SLAs.</li>
+          <li>Maintained customer records and updated CRM systems.</li>
+          <li>Worked with cross-functional teams on escalated issues.</li>
+          <li>Met quality, productivity, customer satisfaction, and compliance targets.</li>
+          <li>Protected customer information and followed company policies.</li>
+        </ul>
+        <p><strong>Skills gained:</strong> CRM, effective communication, complaint resolution, active listening, time management, problem-solving, and teamwork.</p>
+      </article>
+      <article class="panel">
+        <h3>Executive — Kailtech Test &amp; Research Centre</h3>
+        <p class="meta">March 2023 – June 2024</p>
+        <ul>
+          <li>Prepared and maintained accurate quality inspection and testing reports.</li>
+          <li>Coordinated with customers and supported long-term professional relationships.</li>
+          <li>Generated sales leads through digital marketing initiatives.</li>
+          <li>Assisted with documentation, reporting, administration, and customer follow-ups.</li>
+          <li>Maintained customer databases and supported business development.</li>
+        </ul>
+        <p><strong>Skills gained:</strong> Quality documentation, digital marketing, lead generation, client relationship management, business communication, and reporting.</p>
+      </article>
+      <article class="panel">
+        <h3>Selected Achievements</h3>
+        <ul>
+          <li>Maintained customer satisfaction while handling customer interactions.</li>
+          <li>Contributed to business lead generation through digital marketing.</li>
+          <li>Maintained quality standards and prepared reports on time.</li>
+          <li>Demonstrated commitment to organizational goals and team performance.</li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="tab-content" id="hobbies" role="tabpanel" aria-labelledby="tab-hobbies">
+      <div class="panel">
+        <h3>Hobbies &amp; Interests</h3>
+        <p>Activities I enjoy and areas I like exploring:</p>
+        <div class="hobby-grid">
+          <div class="hobby">🏍️ Bike Riding</div>
+          <div class="hobby">🍳 Cooking</div>
+          <div class="hobby">💡 Learning New Technologies</div>
+          <div class="hobby">📚 Reading</div>
+          <div class="hobby">🧰 Exploring Digital Tools</div>
+        </div>
+        <div class="section-heading"><h2>Areas of Interest</h2><span></span></div>
+        <div class="tag-list">
+          <span class="tag">Customer Support</span><span class="tag">IT Support</span>
+          <span class="tag">Business Operations</span><span class="tag">Technical Support</span>
+          <span class="tag">Sales &amp; Marketing</span><span class="tag">Management</span>
+          <span class="tag">Client Relationship Management</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="tab-content" id="skills" role="tabpanel" aria-labelledby="tab-skills">
+      <article class="panel">
+        <h3>Technical Skills</h3>
+        <div class="tag-list">
+          <span class="tag">MS Word</span><span class="tag">MS Excel</span><span class="tag">PowerPoint</span>
+          <span class="tag">Computer Fundamentals</span><span class="tag">Internet &amp; Email</span>
+          <span class="tag">CRM Software</span><span class="tag">Database Fundamentals</span>
+          <span class="tag">Basic Java</span><span class="tag">Basic Python</span><span class="tag">Digital Marketing Fundamentals</span>
+        </div>
+      </article>
+      <article class="panel">
+        <h3>Core Skills</h3>
+        <div class="tag-list">
+          <span class="tag">Customer Service Excellence</span><span class="tag">Communication &amp; Presentation</span>
+          <span class="tag">Problem Solving</span><span class="tag">Team Collaboration</span>
+          <span class="tag">Adaptability</span><span class="tag">Time Management</span>
+          <span class="tag">Conflict Resolution</span><span class="tag">Client Relationship Management</span>
+          <span class="tag">Analytical Thinking</span><span class="tag">Decision Making</span>
+          <span class="tag">Multitasking</span><span class="tag">Attention to Detail</span>
+        </div>
+      </article>
+      <article class="panel">
+        <h3>Strengths</h3>
+        <ul>
+          <li>Strong work ethic and a positive attitude.</li>
+          <li>Excellent communication and interpersonal skills.</li>
+          <li>Quick learner, adaptable to new technologies.</li>
+          <li>Works efficiently under pressure.</li>
+          <li>Customer-oriented, self-motivated, and responsible.</li>
+          <li>Analytical problem-solving and teamwork skills.</li>
+        </ul>
+      </article>
+    </section>
+
+    <footer class="footer">© <span id="year"></span> Piyush Deshmukh · Built with HTML, CSS &amp; JavaScript</footer>
+  </main>
+  <script>
+    const tabButtons = document.querySelectorAll('.tab-button');
+    const panels = document.querySelectorAll('.tab-content');
+
+    function activateTab(button) {
+      const targetId = button.getAttribute('aria-controls');
+      tabButtons.forEach((tab) => {
+        const selected = tab === button;
+        tab.setAttribute('aria-selected', String(selected));
+        tab.tabIndex = selected ? 0 : -1;
+      });
+      panels.forEach((panel) => {
+        panel.classList.toggle('active', panel.id === targetId);
+      });
+    }
+
+    tabButtons.forEach((button, index) => {
+      button.addEventListener('click', () => activateTab(button));
+      button.addEventListener('keydown', (event) => {
+        if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') {
+          event.preventDefault();
+          const direction = event.key === 'ArrowRight' ? 1 : -1;
+          const next = tabButtons[(index + direction + tabButtons.length) % tabButtons.length];
+          activateTab(next);
+          next.focus();
+        }
+      });
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
